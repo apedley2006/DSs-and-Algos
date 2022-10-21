@@ -5,17 +5,38 @@
 */
 
 function mergeArrays(...arrays) {
-
     let jointArray = []
     
     arrays.forEach(array => {
         jointArray = [...jointArray, ...array]
-    });
-
+    })
     return [...new Set([...jointArray])]
-
-    
 }
 
+function mergeArrays(...arrays) {
+    let jointArray = []
+    
+    arrays.forEach(array => {
+        jointArray = [...jointArray, ...array]
+    })
+    const newArr = jointArray.filter((item, index) => jointArray.indexOf(item) === index)
+    return newArr
+}
+
+function mergeArrays(...arrays) {
+    let jointArray = []
+    
+    arrays.forEach(array => {
+        jointArray = [...jointArray, ...array]
+    })
+    const redArr = jointArray.reduce((newArray, item) => {
+        if (newArray.includes(item)){
+            return newArray
+        } else {
+            return [...newArray, item]
+        }
+    }, [])
+    return redArr
+}
 
 module.exports = mergeArrays
